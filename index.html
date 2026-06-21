@@ -1,1242 +1,2640 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aditya Kante | Aspiring Data Analyst</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        :root {
-            --primary-color: #2563eb;
-            --secondary-color: #1e40af;
-            --dark-color: #1e293b;
-            --light-color: #f8fafc;
-            --gray-color: #64748b;
-            --accent-color: #7c3aed;
-            --success-color: #10b981;
-        }
-        
-        body {
-            background-color: #f8fafc;
-            color: #334155;
-            line-height: 1.6;
-        }
-        
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        section {
-            padding: 80px 0;
-        }
-        
-        h1, h2, h3, h4 {
-            color: var(--dark-color);
-            margin-bottom: 15px;
-        }
-        
-        h1 {
-            font-size: 2.8rem;
-            line-height: 1.2;
-        }
-        
-        h2 {
-            font-size: 2.2rem;
-            position: relative;
-            padding-bottom: 15px;
-            margin-bottom: 40px;
-        }
-        
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 70px;
-            height: 4px;
-            background-color: var(--primary-color);
-            border-radius: 2px;
-        }
-        
-        h3 {
-            font-size: 1.5rem;
-        }
-        
-        p {
-            margin-bottom: 15px;
-            color: var(--gray-color);
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 14px 32px;
-            background-color: var(--primary-color);
-            color: white;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-        
-        .btn:hover {
-            background-color: var(--secondary-color);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .btn-outline {
-            background-color: transparent;
-            border: 2px solid var(--primary-color);
-            color: var(--primary-color);
-        }
-        
-        .btn-outline:hover {
-            background-color: var(--primary-color);
-            color: white;
-        }
-        
-        /* Header & Navigation */
-        header {
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-        
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 22px 0;
-        }
-        
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--dark-color);
-            text-decoration: none;
-        }
-        
-        .logo span {
-            color: var(--primary-color);
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-links li {
-            margin-left: 35px;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: var(--dark-color);
-            font-weight: 600;
-            font-size: 1rem;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-        
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--primary-color);
-            transition: width 0.3s ease;
-        }
-        
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-        
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-        
-        .menu-toggle {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--dark-color);
-        }
-        
-        /* Hero Section - Profile on RIGHT side */
-        .hero {
-            padding-top: 160px;
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-            overflow: hidden;
-        }
-        
-        .hero-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 60px;
-        }
-        
-        .hero-text {
-            flex: 1;
-            order: 1; /* Text on left */
-        }
-        
-        .hero-image {
-            flex: 1;
-            text-align: center;
-            order: 2; /* Image on right */
-        }
-        
-        /* NORMAL SIZE PROFILE PHOTO - Adjusted to normal size */
-        .profile-img {
-            width: 280px; /* Normal size */
-            height: 280px; /* Normal size */
-            border-radius: 50%;
-            object-fit: cover;
-            border: 10px solid white;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-            background-color: #e0f2fe;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            margin-left: auto;
-        }
-        
-        .profile-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-        
-        .profile-img .initials-fallback {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            color: white;
-        }
-        
-        .tagline {
-            font-size: 1.4rem;
-            color: var(--gray-color);
-            margin-bottom: 25px;
-        }
-        
-        .highlight {
-            color: var(--primary-color);
-            font-weight: 700;
-        }
-        
-        .social-links {
-            display: flex;
-            margin-top: 30px;
-        }
-        
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 48px;
-            height: 48px;
-            background-color: white;
-            border-radius: 50%;
-            margin-right: 15px;
-            color: var(--dark-color);
-            font-size: 1.3rem;
-            text-decoration: none;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        .social-links a:hover {
-            background-color: var(--primary-color);
-            color: white;
-            transform: translateY(-5px);
-        }
-        
-        /* About Section */
-        .about-content {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 60px;
-        }
-        
-        .education-item {
-            background-color: white;
-            padding: 28px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
-            border-left: 5px solid var(--primary-color);
-            transition: transform 0.3s ease;
-        }
-        
-        .education-item:hover {
-            transform: translateY(-5px);
-        }
-        
-        .education-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            align-items: flex-start;
-        }
-        
-        .education-title {
-            font-weight: 700;
-            color: var(--dark-color);
-            font-size: 1.1rem;
-        }
-        
-        .education-date {
-            color: var(--primary-color);
-            font-weight: 700;
-            font-size: 0.95rem;
-        }
-        
-        .education-institution {
-            color: var(--gray-color);
-            font-style: italic;
-            margin-bottom: 10px;
-            font-size: 0.95rem;
-        }
-        
-        /* Skills Section */
-        .skills {
-            background-color: white;
-        }
-        
-        .skills-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .skill-category {
-            background-color: #f8fafc;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
-            transition: transform 0.3s ease;
-        }
-        
-        .skill-category:hover {
-            transform: translateY(-5px);
-        }
-        
-        .skill-list {
-            list-style: none;
-        }
-        
-        .skill-list li {
-            margin-bottom: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .skill-name {
-            font-weight: 600;
-            font-size: 1rem;
-        }
-        
-        .skill-level {
-            height: 10px;
-            width: 150px;
-            background-color: #e2e8f0;
-            border-radius: 5px;
-            overflow: hidden;
-        }
-        
-        .skill-level-bar {
-            height: 100%;
-            background-color: var(--primary-color);
-            border-radius: 5px;
-        }
-        
-        /* Projects Section */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 35px;
-        }
-        
-        .project-card {
-            background-color: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-        
-        .project-img {
-            height: 200px;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: white;
-        }
-        
-        .project-1 .project-img {
-            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-        }
-        
-        .project-2 .project-img {
-            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
-        }
-        
-        .project-3 .project-img {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-        }
-        
-        .project-info {
-            padding: 30px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .project-description {
-            flex-grow: 1;
-        }
-        
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            margin-top: 20px;
-        }
-        
-        .tag {
-            background-color: #dbeafe;
-            color: var(--primary-color);
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            margin-right: 10px;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-        
-        .project-2 .tag {
-            background-color: #ede9fe;
-            color: var(--accent-color);
-        }
-        
-        .project-3 .tag {
-            background-color: #d1fae5;
-            color: #065f46;
-        }
-        
-        /* Certifications Section */
-        .certifications {
-            background-color: #f8fafc;
-        }
-        
-        .cert-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 30px;
-        }
-        
-        .cert-card {
-            background-color: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
-            border-left: 5px solid var(--primary-color);
-            transition: transform 0.3s ease;
-        }
-        
-        .cert-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .cert-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 12px;
-            align-items: flex-start;
-        }
-        
-        .cert-company {
-            color: var(--primary-color);
-            font-weight: 700;
-            font-size: 1.1rem;
-        }
-        
-        .cert-date {
-            color: var(--gray-color);
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-        
-        /* Contact Section */
-        .contact-content {
-            display: flex;
-            gap: 60px;
-        }
-        
-        .contact-info {
-            flex: 1;
-        }
-        
-        .contact-form {
-            flex: 1;
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-        
-        .contact-icon {
-            width: 60px;
-            height: 60px;
-            background-color: #dbeafe;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 20px;
-            color: var(--primary-color);
-            font-size: 1.4rem;
-        }
-        
-        .form-group {
-            margin-bottom: 25px;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 16px;
-            border: 1px solid #cbd5e1;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-        
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-        }
-        
-        textarea.form-control {
-            min-height: 160px;
-            resize: vertical;
-        }
-        
-        /* Footer */
-        footer {
-            background-color: var(--dark-color);
-            color: white;
-            padding: 60px 0 25px;
-            text-align: center;
-        }
-        
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-        }
-        
-        .footer-links li {
-            margin: 0 15px;
-        }
-        
-        .footer-links a {
-            color: #cbd5e1;
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: color 0.3s ease;
-        }
-        
-        .footer-links a:hover {
-            color: white;
-        }
-        
-        .copyright {
-            color: #94a3b8;
-            font-size: 0.9rem;
-            padding-top: 25px;
-            border-top: 1px solid #334155;
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 1100px) {
-            .hero-content {
-                gap: 40px;
-            }
-            
-            .profile-img {
-                width: 260px; /* Slightly smaller for medium screens */
-                height: 260px;
-            }
-        }
-        
-        @media (max-width: 992px) {
-            .hero-content {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .hero-text {
-                order: 2;
-            }
-            
-            .hero-image {
-                order: 1;
-            }
-            
-            .profile-img {
-                margin: 0 auto;
-            }
-            
-            .social-links {
-                justify-content: center;
-            }
-            
-            .about-content, .contact-content {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            
-            .contact-content {
-                flex-direction: column;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: block;
-            }
-            
-            .nav-links {
-                position: fixed;
-                top: 80px;
-                left: 0;
-                width: 100%;
-                background-color: white;
-                flex-direction: column;
-                align-items: center;
-                padding: 25px 0;
-                box-shadow: 0 15px 20px rgba(0, 0, 0, 0.1);
-                transform: translateY(-100%);
-                opacity: 0;
-                transition: all 0.3s ease;
-                z-index: 999;
-            }
-            
-            .nav-links.active {
-                transform: translateY(0);
-                opacity: 1;
-            }
-            
-            .nav-links li {
-                margin: 15px 0;
-            }
-            
-            h1 {
-                font-size: 2.4rem;
-            }
-            
-            h2 {
-                font-size: 1.9rem;
-            }
-            
-            .profile-img {
-                width: 220px; /* Normal size for mobile */
-                height: 220px;
-            }
-            
-            .footer-links {
-                flex-direction: column;
-            }
-            
-            .footer-links li {
-                margin: 8px 0;
-            }
-            
-            section {
-                padding: 70px 0;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .skills-container, .cert-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            h1 {
-                font-size: 2.1rem;
-            }
-            
-            .tagline {
-                font-size: 1.2rem;
-            }
-            
-            .profile-img {
-                width: 200px; /* Slightly smaller for very small screens */
-                height: 200px;
-            }
-        }
-    </style>
+<title>Aditya Kante | Data Analyst Portfolio</title>
+
+<!-- Font Awesome -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+/* =============================
+   GLOBAL STYLES
+============================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+    font-family:"Segoe UI",sans-serif;
+}
+
+
+:root{
+
+    --primary:#2563eb;
+    --secondary:#1e40af;
+    --dark:#0f172a;
+    --light:#ffffff;
+    --gray:#64748b;
+    --bg:#f8fafc;
+    --success:#10b981;
+
+}
+
+
+body{
+    background:var(--bg);
+    color:var(--dark);
+    line-height:1.7;
+}
+
+
+
+/* =============================
+   REUSABLE CLASSES
+============================= */
+
+.container{
+
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+
+}
+
+
+section{
+
+    padding:90px 0;
+
+}
+
+
+h1,h2,h3{
+
+    color:var(--dark);
+
+}
+
+
+h2{
+
+    font-size:38px;
+    margin-bottom:40px;
+    position:relative;
+
+}
+
+
+h2::after{
+
+    content:"";
+    position:absolute;
+    width:80px;
+    height:5px;
+    background:var(--primary);
+    bottom:-10px;
+    left:0;
+    border-radius:20px;
+
+}
+
+
+p{
+
+    color:var(--gray);
+
+}
+
+
+.btn{
+
+    display:inline-block;
+    padding:14px 32px;
+    background:var(--primary);
+    color:white;
+    border-radius:8px;
+    text-decoration:none;
+    transition:.3s;
+    font-weight:600;
+
+}
+
+
+.btn:hover{
+
+    background:var(--secondary);
+    transform:translateY(-5px);
+
+}
+
+
+
+.btn-outline{
+
+    background:transparent;
+    color:var(--primary);
+    border:2px solid var(--primary);
+
+}
+
+
+.btn-outline:hover{
+
+    color:white;
+
+}
+
+
+
+/* =============================
+   HEADER
+============================= */
+
+
+header{
+
+    position:fixed;
+    width:100%;
+    top:0;
+    background:white;
+    box-shadow:0 3px 10px #ddd;
+    z-index:1000;
+
+}
+
+
+nav{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:22px 0;
+
+}
+
+
+.logo{
+
+    text-decoration:none;
+    font-size:30px;
+    font-weight:700;
+    color:var(--dark);
+
+}
+
+
+.logo span{
+
+    color:var(--primary);
+
+}
+
+
+
+.nav-links{
+
+    display:flex;
+    list-style:none;
+
+}
+
+
+.nav-links li{
+
+    margin-left:35px;
+
+}
+
+
+.nav-links a{
+
+    text-decoration:none;
+    color:var(--dark);
+    font-weight:600;
+    transition:.3s;
+
+}
+
+
+.nav-links a:hover{
+
+    color:var(--primary);
+
+}
+
+
+.menu-btn{
+
+    display:none;
+    font-size:25px;
+    cursor:pointer;
+
+}
+
+
+
+/* =============================
+   HERO SECTION
+============================= */
+
+
+.hero{
+
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    background:
+    linear-gradient(
+    135deg,
+    #eff6ff,
+    #dbeafe);
+
+}
+
+
+.hero-content{
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:60px;
+
+}
+
+
+.hero-text{
+
+    flex:1;
+
+}
+
+
+.hero-text h1{
+
+    font-size:55px;
+    line-height:1.2;
+
+}
+
+
+.hero-text h1 span{
+
+    color:var(--primary);
+
+}
+
+
+.hero-text h3{
+
+    color:var(--gray);
+    margin:20px 0;
+    font-size:24px;
+
+}
+
+
+.hero-text p{
+
+    font-size:18px;
+    margin-bottom:25px;
+
+}
+
+
+
+/* PROFILE IMAGE */
+
+
+.hero-image{
+
+    flex:1;
+    text-align:center;
+
+}
+
+
+.hero-image img{
+
+
+    width:320px;
+    height:320px;
+    border-radius:50%;
+    object-fit:cover;
+    border:10px solid white;
+    box-shadow:
+    0 15px 35px rgba(0,0,0,.15);
+
+}
+
+
+
+/* SOCIAL ICONS */
+
+
+.social{
+
+    display:flex;
+    gap:15px;
+    margin-top:25px;
+
+}
+
+
+.social a{
+
+
+    width:45px;
+    height:45px;
+    background:white;
+    color:var(--dark);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    text-decoration:none;
+    box-shadow:0 5px 15px #ddd;
+    transition:.3s;
+
+}
+
+
+.social a:hover{
+
+    background:var(--primary);
+    color:white;
+    transform:translateY(-5px);
+
+}
+
+</style>
+
 </head>
+
+
 <body>
-    <!-- Header & Navigation -->
-    <header>
-        <div class="container">
-            <nav>
-                <a href="#" class="logo">Aditya<span>Kante</span></a>
-                
-                <div class="menu-toggle" id="menuToggle">
-                    <i class="fas fa-bars"></i>
-                </div>
-                
-                <ul class="nav-links" id="navLinks">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#certifications">Certifications</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
 
-    <!-- Hero Section - Profile Photo on RIGHT -->
-    <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1>Aditya Kante</h1>
-                    <p class="tagline">Aspiring <span class="highlight">Data Analyst</span> | Transforming Data into Insights</p>
-                    <p>Aspiring Data Analyst with expertise in <span class="highlight">Python, SQL, Power BI, and data analytics tools</span>. Experienced in data analysis, visualization, and predictive modeling through academic projects. Skilled in cleaning, processing, and interpreting complex datasets to generate actionable insights.</p>
-                    <p>I want to use my skills in data analysis and programming to help organizations make better decisions, solve problems, and improve results.</p>
-                    
-                    <div class="social-links">
-                        <a href="https://github.com/AdityaK1304" target="_blank" title="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/in/aditya-kante-656213371/" target="_blank" title="LinkedIn">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="mailto:kanteaditya13@gmail.com" title="Email">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                        <a href="#contact" title="Contact">
-                            <i class="fas fa-file-alt"></i>
-                        </a>
-                    </div>
-                    
-                    <div style="margin-top: 35px;">
-                        <a href="#contact" class="btn">Contact Me</a>
-                        <a href="#projects" class="btn btn-outline" style="margin-left: 15px;">View Projects</a>
-                    </div>
-                </div>
-                
-                <div class="hero-image">
-                    <div class="profile-img">
-                        <!-- GitHub Profile Photo with Fallback -->
-                        <img src="https://github.com/AdityaK1304.png?size=400" 
-                             alt="Aditya Kante"
-                             onerror="this.src='https://ui-avatars.com/api/?name=Aditya+Kante&background=0D8ABC&color=fff&size=400';">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <h2>About & Education</h2>
-            <div class="about-content">
-                <div>
-                    <h3>Profile Summary</h3>
-                    <p>Aspiring Data Analyst with expertise in Python, SQL, Power BI, and data analytics tools. Experienced in data analysis, visualization, and predictive modeling through internships and projects. Skilled in cleaning, processing, and interpreting complex datasets to generate actionable insights.</p>
-                    <p>I want to use my skills in data analysis and programming to help the company make better decisions, solve problems, and improve results.</p>
-                    
-                    <h3 style="margin-top: 40px;">Technical Skills Overview</h3>
-                    <p><strong>Programming Languages:</strong> Python (Intermediate), SQL (Intermediate), R (Basic)</p>
-                    <p><strong>Python Libraries:</strong> Pandas, NumPy, Scikit-learn, Matplotlib, Seaborn, NLTK</p>
-                    <p><strong>Machine Learning:</strong> Linear Regression, Logistic Regression, Decision Trees, Random Forest, K-Means, NLP</p>
-                    <p><strong>Tools:</strong> Jupyter Notebook, Google Colab, Excel (Pivot Tables, VLOOKUP, Power Query), VS Code, Anaconda</p>
-                </div>
-                
-                <div>
-                    <h3>Education</h3>
-                    
-                    <div class="education-item">
-                        <div class="education-header">
-                            <div class="education-title">Bachelor of Engineering (AI & Data Science)</div>
-                            <div class="education-date">2022-2026</div>
-                        </div>
-                        <div class="education-institution">University of Mumbai</div>
-                        <p>Currently pursuing (VII Semester CGPA: 7.82)</p>
-                    </div>
-                    
-                    <div class="education-item">
-                        <div class="education-header">
-                            <div class="education-title">HSC (Higher Secondary Certificate)</div>
-                            <div class="education-date">2020-2022</div>
-                        </div>
-                        <div class="education-institution">Maharashtra State Board</div>
-                        <p>Percentage: 61%</p>
-                    </div>
-                    
-                    <div class="education-item">
-                        <div class="education-header">
-                            <div class="education-title">SSC (Secondary School Certificate)</div>
-                            <div class="education-date">2020</div>
-                        </div>
-                        <div class="education-institution">Maharashtra State Board</div>
-                        <p>Percentage: 77%</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- =============================
+     HEADER
+============================= -->
 
-    <!-- Skills Section -->
-    <section class="skills" id="skills">
-        <div class="container">
-            <h2>Technical Skills</h2>
-            <div class="skills-container">
-                <div class="skill-category">
-                    <h3>Data Analysis & Programming</h3>
-                    <ul class="skill-list">
-                        <li>
-                            <span class="skill-name">Python</span>
-                            <div class="skill-level">
-                                <div class="skill-level-bar" style="width: 85%;"></div>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="skill-name">SQL</span>
-                            <div class="skill-level">
-                                <div class="skill-level-bar" style="width: 80%;"></div>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="skill-name">R</span>
-                            <div class="skill-level">
-                                <div class="skill-level-bar" style="width: 60%;"></div>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="skill-name">Excel (Advanced)</span>
-                            <div class="skill-level">
-                                <div class="skill-level-bar" style="width: 90%;"></div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="skill-category">
-                    <h3>Data Visualization</h3>
-                    <ul class="skill-list">
-                        <li>
-                            <span class="skill-name">Power BI</span>
-                            <div class="skill-level">
-                                <div class="skill-level-bar" style="width: 85%;"></div>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="skill-name">Tableau</span>
-                            <div class="skill-level">
-                                <div class="skill-level-bar" style="width: 75%;"></div>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="skill-name">Matplotlib/Seaborn</span>
-                            <div class="skill-level">
-                                <div class="skill-level-bar" style="width: 80%;"></div>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="skill-name">Plotly</span>
-                            <div class="skill-level">
-                                <div class="skill-level-bar" style="width: 70%;"></div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="skill-category">
-                    <h3>Databases & Tools</h3>
-                    <ul class="skill-list">
-                        <li>
-                            <span class="skill-name">MySQL</span>
-                            <div class="skill-level">
-                                <div class="skill-level-bar" style="width: 85%;"></div>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="skill-name">PostgreSQL</span>
-                            <div class="skill-level">
-                                <div class="skill-level-bar" style="width: 75%;"></div>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="skill-name">Git/GitHub</span>
-                            <div class="skill-level">
-                                <div class="skill-level-bar" style="width: 80%;"></div>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="skill-name">Jupyter Notebook</span>
-                            <div class="skill-level">
-                                <div class="skill-level-bar" style="width: 90%;"></div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Projects Section -->
-    <section class="projects" id="projects">
-        <div class="container">
-            <h2>Academic Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card project-1">
-                    <div class="project-img">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <div class="project-info">
-                        <h3>Sales Performance Dashboard</h3>
-                        <div class="project-description">
-                            <p>Analyzed sales data to identify trends, track performance, and support data-driven business decisions using SQL and Power BI.</p>
-                            <ul style="margin-left: 20px; margin-top: 15px; color: var(--gray-color);">
-                                <li style="margin-bottom: 8px;">Extracted and cleaned data using SQL queries</li>
-                                <li style="margin-bottom: 8px;">Performed exploratory data analysis (EDA) to identify patterns</li>
-                                <li style="margin-bottom: 8px;">Created interactive dashboards in Power BI to visualize sales by region, product, and time period</li>
-                                <li style="margin-bottom: 8px;">Identified top-selling products, seasonal trends, and revenue patterns</li>
-                                <li>Enabled management to quickly monitor sales performance and identify underperforming products</li>
-                            </ul>
-                        </div>
-                        <div class="project-tags">
-                            <span class="tag">SQL</span>
-                            <span class="tag">Power BI</span>
-                            <span class="tag">Data Analysis</span>
-                            <span class="tag">Dashboard</span>
-                            <span class="tag">Data Visualization</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="project-card project-2">
-                    <div class="project-img">
-                        <i class="fas fa-music"></i>
-                    </div>
-                    <div class="project-info">
-                        <h3>Emotion-Based Music Recommendation System</h3>
-                        <div class="project-description">
-                            <p>Designed a system to recommend songs based on a user's current emotion using Python and machine learning.</p>
-                            <ul style="margin-left: 20px; margin-top: 15px; color: var(--gray-color);">
-                                <li style="margin-bottom: 8px;">Collected and preprocessed music and emotion-labeled data</li>
-                                <li style="margin-bottom: 8px;">Performed exploratory data analysis (EDA) on the dataset</li>
-                                <li style="margin-bottom: 8px;">Built a machine learning model to predict emotion from user input</li>
-                                <li style="margin-bottom: 8px;">Developed a recommendation algorithm to suggest songs matching detected emotion</li>
-                                <li>Enhanced personalization and automated music suggestions for users</li>
-                            </ul>
-                        </div>
-                        <div class="project-tags">
-                            <span class="tag">Python</span>
-                            <span class="tag">Machine Learning</span>
-                            <span class="tag">Recommendation System</span>
-                            <span class="tag">OpenCV</span>
-                            <span class="tag">Data Processing</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Fake News Detection Project -->
-                <div class="project-card project-3">
-                    <div class="project-img">
-                        <i class="fas fa-newspaper"></i>
-                    </div>
-                    <div class="project-info">
-                        <h3>Fake News Detection System</h3>
-                        <div class="project-description">
-                            <p>Developed a machine learning model to classify news as real or fake using NLP techniques and various classification algorithms.</p>
-                            <ul style="margin-left: 20px; margin-top: 15px; color: var(--gray-color);">
-                                <li style="margin-bottom: 8px;">Applied TF-IDF vectorization, text preprocessing, stemming, lemmatization, and stopword removal</li>
-                                <li style="margin-bottom: 8px;">Performed feature extraction and dimensionality reduction for text data</li>
-                                <li style="margin-bottom: 8px;">Trained and evaluated multiple models including Logistic Regression, Random Forest, and SVM</li>
-                                <li style="margin-bottom: 8px;">Achieved high accuracy and F1-score in detecting fake news articles</li>
-                                <li>Built a simple UI for prediction and deployed the model for real-time classification</li>
-                            </ul>
-                        </div>
-                        <div class="project-tags">
-                            <span class="tag">Python</span>
-                            <span class="tag">NLP</span>
-                            <span class="tag">Machine Learning</span>
-                            <span class="tag">Scikit-learn</span>
-                            <span class="tag">TF-IDF</span>
-                            <span class="tag">Logistic Regression</span>
-                            <span class="tag">Random Forest</span>
-                            <span class="tag">SVM</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="text-align: center; margin-top: 50px;">
-                <a href="https://github.com/AdityaK1304" target="_blank" class="btn btn-outline">View All Projects on GitHub</a>
-            </div>
-        </div>
-    </section>
+<header>
 
-    <!-- Certifications Section -->
-    <section class="certifications" id="certifications">
-        <div class="container">
-            <h2>Certifications & Training</h2>
-            <div class="cert-grid">
-                <div class="cert-card">
-                    <div class="cert-header">
-                        <div class="cert-company">Deloitte</div>
-                        <div class="cert-date">Oct 2025</div>
-                    </div>
-                    <h3>Data Analytics Virtual Internship</h3>
-                    <p>Completed a comprehensive virtual internship focused on data analytics, gaining hands-on experience in data cleaning, visualization, and insights generation.</p>
-                </div>
-                
-                <div class="cert-card">
-                    <div class="cert-header">
-                        <div class="cert-company">TATA</div>
-                        <div class="cert-date">Oct 2025</div>
-                    </div>
-                    <h3>GenAI Powered Data Analytics</h3>
-                    <p>Worked on leveraging Generative AI for advanced data analysis and insights generation. Applied AI-driven models to streamline data processing and improve decision-making.</p>
-                </div>
-                
-                <div class="cert-card">
-                    <div class="cert-header">
-                        <div class="cert-company">IT Vedant Education</div>
-                        <div class="cert-date">2025</div>
-                    </div>
-                    <h3>Masters in Data Science and Data Analytics with AI</h3>
-                    <p>Coursework included Python, Machine Learning, Artificial Intelligence, MySQL, Power BI, Tableau, and Excel.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<div class="container">
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <h2>Get In Touch</h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>Contact Information</h3>
-                    <p>I'm actively seeking data analyst opportunities. Feel free to reach out for collaborations or job opportunities!</p>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div>
-                            <h4>Email</h4>
-                            <p>kanteaditya13@gmail.com</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div>
-                            <h4>Phone</h4>
-                            <p>+91 8830089501</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div>
-                            <h4>Location</h4>
-                            <p>Mumbai, Maharashtra, India</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-file-pdf"></i>
-                        </div>
-                        <div>
-                            <h4>Resume</h4>
-                            <p><a href="#" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">Download Resume (PDF)</a></p>
-                        </div>
-                    </div>
-                    
-                    <div class="social-links" style="margin-top: 40px;">
-                        <a href="https://github.com/AdityaK1304" target="_blank" title="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/in/aditya-kante-656213371/" target="_blank" title="LinkedIn">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="mailto:kanteaditya13@gmail.com" title="Email">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                        <a href="#" title="Portfolio">
-                            <i class="fas fa-globe"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="contact-form">
-                    <h3>Send a Message</h3>
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Your Name" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Your Email" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Subject" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <textarea class="form-control" placeholder="Your Message" required></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <ul class="footer-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#certifications">Certifications</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            
-            <p class="copyright">
-                &copy; 2025 Aditya Kante. All Rights Reserved.<br>
-                Aspiring Data Analyst | kanteaditya13@gmail.com | +91 8830089501
-            </p>
-        </div>
-    </footer>
+<nav>
 
-    <script>
-        // Mobile Navigation Toggle
-        const menuToggle = document.getElementById('menuToggle');
-        const navLinks = document.getElementById('navLinks');
-        
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-        
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-            });
-        });
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 100,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-        
-        // Form submission
-        const contactForm = document.getElementById('contactForm');
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your message! I will get back to you soon.');
-            contactForm.reset();
-        });
-        
-        // Add scroll effect to header
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if(window.scrollY > 50) {
-                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
-                header.style.padding = '0';
-                document.querySelector('nav').style.padding = '15px 0';
-            } else {
-                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.05)';
-                header.style.padding = '0';
-                document.querySelector('nav').style.padding = '22px 0';
-            }
-        });
-        
-        // Initialize header padding
-        window.dispatchEvent(new Event('scroll'));
-    </script>
+<a href="#" class="logo">
+Aditya<span>Kante</span>
+</a>
+
+
+<ul class="nav-links">
+
+<li><a href="#home">Home</a></li>
+
+<li><a href="#about">
+About
+</a></li>
+
+
+<li><a href="#skills">
+Skills
+</a></li>
+
+
+<li>
+<a href="#projects">
+Projects
+</a>
+</li>
+
+
+<li>
+<a href="#certifications">
+Certificates
+</a>
+</li>
+
+
+<li>
+<a href="#contact">
+Contact
+</a>
+</li>
+
+
+</ul>
+
+
+<div class="menu-btn">
+
+<i class="fa fa-bars"></i>
+
+</div>
+
+
+</nav>
+
+
+</div>
+
+
+</header>
+
+
+
+<!-- =============================
+     HERO SECTION
+============================= -->
+
+
+<section class="hero" id="home">
+
+
+<div class="container">
+
+
+<div class="hero-content">
+
+
+<div class="hero-text">
+
+
+<h1>
+
+Hi, I'm 
+<span>Aditya Kante</span>
+
+</h1>
+
+
+<h3>
+Aspiring Data Analyst
+</h3>
+
+
+<p>
+
+Aspiring Data Analyst skilled in 
+Python, SQL, Excel, Power BI,
+and Machine Learning.
+
+I transform raw data into
+meaningful insights and create
+data-driven solutions.
+
+</p>
+
+
+<a href="#projects" class="btn">
+
+View Projects
+
+</a>
+
+
+<a href="#contact"
+class="btn btn-outline">
+
+Contact Me
+
+</a>
+
+
+
+<div class="social">
+
+
+<a href="https://github.com/AdityaK1304"
+target="_blank">
+
+<i class="fab fa-github"></i>
+
+</a>
+
+
+<a href="https://linkedin.com/in/aditya-kante-656213371"
+target="_blank">
+
+<i class="fab fa-linkedin"></i>
+
+</a>
+
+
+<a href="mailto:kanteaditya13@gmail.com">
+
+<i class="fa-solid fa-envelope"></i>
+
+</a>
+
+
+</div>
+
+
+</div>
+
+
+<div class="hero-image">
+
+
+<img src="profile.jpg.png"
+alt="Aditya Kante">
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+<!-- =============================
+     ABOUT SECTION
+============================= -->
+
+<section id="about">
+
+<div class="container">
+
+<h2>
+About Me
+</h2>
+
+
+<div class="about-container">
+
+
+<div class="about-text">
+
+
+<h3>
+Who I Am
+</h3>
+
+
+<p>
+
+I am an aspiring Data Analyst with a strong foundation in 
+Python, SQL, Excel, Power BI, and Machine Learning. 
+I enjoy transforming raw datasets into meaningful insights 
+that help organizations make better data-driven decisions.
+
+</p>
+
+
+<p>
+
+I have hands-on experience in data cleaning, exploratory 
+data analysis (EDA), dashboard development, and predictive 
+model building through multiple Data Analytics and Machine 
+Learning projects.
+
+</p>
+
+
+<p>
+
+My goal is to build efficient analytical solutions, uncover 
+business trends, and continuously improve my skills in 
+Data Science and Analytics.
+
+</p>
+
+
+
+<h3 style="margin-top:35px;">
+Career Objective
+</h3>
+
+
+<p>
+
+Seeking an opportunity as a Data Analyst where I can apply my 
+analytical skills, programming knowledge, and problem-solving 
+abilities to contribute to business growth and gain 
+real-world industry experience.
+
+</p>
+
+
+</div>
+
+
+
+<div class="education">
+
+
+<h3>
+Education
+</h3>
+
+
+
+<div class="edu-card">
+
+
+<h4>
+Bachelor of Engineering (AI & Data Science)
+</h4>
+
+
+<p>
+University of Mumbai
+</p>
+
+
+<p>
+2022 - 2026
+</p>
+
+
+<p>
+<strong>
+Overall CGPA: 6.48
+</strong>
+</p>
+
+
+</div>
+
+
+
+<div class="edu-card">
+
+
+<h4>
+Higher Secondary Certificate (HSC)
+</h4>
+
+
+<p>
+Maharashtra State Board
+</p>
+
+
+<p>
+2020 - 2022
+</p>
+
+
+<p>
+Percentage: 61%
+</p>
+
+
+</div>
+
+
+
+<div class="edu-card">
+
+
+<h4>
+Secondary School Certificate (SSC)
+</h4>
+
+
+<p>
+Maharashtra State Board
+</p>
+
+
+<p>
+Year: 2020
+</p>
+
+
+<p>
+Percentage: 77%
+</p>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+<style>
+
+/* =============================
+   ABOUT SECTION CSS
+============================= */
+
+
+.about-container{
+
+display:grid;
+grid-template-columns: 2fr 1fr;
+gap:40px;
+
+}
+
+
+.about-text p{
+
+font-size:17px;
+margin-bottom:18px;
+line-height:1.8;
+
+}
+
+
+.education{
+
+background:#ffffff;
+padding:25px;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,0.08);
+
+}
+
+
+.edu-card{
+
+border-left:5px solid #2563eb;
+padding:15px;
+margin-bottom:20px;
+background:#f8fafc;
+border-radius:10px;
+
+}
+
+
+.edu-card h4{
+
+color:#0f172a;
+margin-bottom:10px;
+
+}
+
+
+.edu-card p{
+
+margin-bottom:6px;
+
+}
+
+
+/* Responsive */
+
+@media(max-width:900px){
+
+
+.about-container{
+
+grid-template-columns:1fr;
+
+}
+
+
+}
+
+
+</style>
+<!-- =============================
+     SKILLS SECTION
+============================= -->
+
+<section id="skills">
+
+<div class="container">
+
+<h2>
+Technical Skills
+</h2>
+
+
+<div class="skills-container">
+
+
+<!-- Programming & Analytics -->
+
+<div class="skill-card">
+
+<h3>
+Programming & Analytics
+</h3>
+
+<div class="skill">
+
+<span>Python</span>
+
+<div class="progress">
+<div class="progress-bar" style="width:90%;"></div>
+</div>
+
+</div>
+
+
+<div class="skill">
+
+<span>SQL</span>
+
+<div class="progress">
+<div class="progress-bar" style="width:85%;"></div>
+</div>
+
+</div>
+
+
+<div class="skill">
+
+<span>Excel</span>
+
+<div class="progress">
+<div class="progress-bar" style="width:90%;"></div>
+</div>
+
+</div>
+
+
+<div class="skill">
+
+<span>Power BI</span>
+
+<div class="progress">
+<div class="progress-bar" style="width:85%;"></div>
+</div>
+
+</div>
+
+
+</div>
+
+
+<!-- Python Libraries -->
+
+
+<div class="skill-card">
+
+<h3>
+Python Libraries
+</h3>
+
+
+<div class="skill">
+
+<span>Pandas</span>
+
+<div class="progress">
+<div class="progress-bar" style="width:90%;"></div>
+</div>
+
+</div>
+
+
+<div class="skill">
+
+<span>NumPy</span>
+
+<div class="progress">
+<div class="progress-bar" style="width:80%;"></div>
+</div>
+
+</div>
+
+
+<div class="skill">
+
+<span>Matplotlib</span>
+
+<div class="progress">
+<div class="progress-bar" style="width:80%;"></div>
+</div>
+
+</div>
+
+
+<div class="skill">
+
+<span>Scikit-Learn</span>
+
+<div class="progress">
+<div class="progress-bar" style="width:75%;"></div>
+</div>
+
+</div>
+
+
+</div>
+
+
+<!-- Data Science Tools -->
+
+
+<div class="skill-card">
+
+<h3>
+Data Science Tools
+</h3>
+
+
+<div class="skill">
+
+<span>Power Query</span>
+
+<div class="progress">
+<div class="progress-bar" style="width:80%;"></div>
+</div>
+
+</div>
+
+
+<div class="skill">
+
+<span>Tableau</span>
+
+<div class="progress">
+<div class="progress-bar" style="width:75%;"></div>
+</div>
+
+</div>
+
+
+<div class="skill">
+
+<span>Git & GitHub</span>
+
+<div class="progress">
+<div class="progress-bar" style="width:80%;"></div>
+</div>
+
+</div>
+
+
+<div class="skill">
+
+<span>Jupyter Notebook</span>
+
+<div class="progress">
+<div class="progress-bar" style="width:90%;"></div>
+</div>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<style>
+
+/* =============================
+   SKILLS SECTION CSS
+============================= */
+
+
+.skills-container{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:30px;
+
+}
+
+
+.skill-card{
+
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 8px 25px rgba(0,0,0,0.08);
+transition:0.3s;
+
+}
+
+
+.skill-card:hover{
+
+transform:translateY(-10px);
+
+}
+
+
+.skill-card h3{
+
+margin-bottom:25px;
+color:#2563eb;
+
+}
+
+
+.skill{
+
+margin-bottom:20px;
+
+}
+
+
+.skill span{
+
+font-weight:600;
+display:block;
+margin-bottom:8px;
+
+}
+
+
+.progress{
+
+width:100%;
+height:10px;
+background:#e2e8f0;
+border-radius:20px;
+overflow:hidden;
+
+}
+
+
+.progress-bar{
+
+height:100%;
+background:#2563eb;
+border-radius:20px;
+
+}
+
+
+/* Responsive */
+
+@media(max-width:768px){
+
+.skills-container{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+
+</style>
+<!-- =============================
+     DATA ANALYST PROJECTS SECTION
+============================= -->
+
+<section id="projects">
+
+<div class="container">
+
+<h2>
+Data Analyst Projects
+</h2>
+
+
+<div class="projects-container">
+
+
+<!-- Project 1 -->
+
+
+<div class="project-card">
+
+
+<div class="project-icon">
+
+<i class="fas fa-chart-line"></i>
+
+</div>
+
+
+<h3>
+Retail Sales Performance Dashboard
+</h3>
+
+
+<p>
+Developed an interactive Power BI dashboard to analyze retail sales performance and generate actionable business insights.
+</p>
+
+
+<ul>
+
+<li>
+Cleaned and transformed sales data using Excel and Power Query to ensure data accuracy and consistency.
+</li>
+
+
+<li>
+Developed an interactive Power BI dashboard to track sales, profit, and key business KPIs.
+</li>
+
+
+<li>
+Analyzed regional, category-wise, and product-level performance to identify growth opportunities.
+</li>
+
+
+<li>
+Created visual reports to monitor monthly sales trends and support data-driven decision-making.
+</li>
+
+
+<li>
+Generated insights by identifying top-performing products and profitable regions.
+</li>
+
+
+</ul>
+
+
+<div class="tags">
+
+<span>Excel</span>
+<span>Power BI</span>
+<span>Power Query</span>
+<span>Dashboard</span>
+<span>Data Analysis</span>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- Project 2 -->
+
+
+<div class="project-card">
+
+
+<div class="project-icon">
+
+<i class="fas fa-database"></i>
+
+</div>
+
+
+<h3>
+E-Commerce Database Analysis
+</h3>
+
+
+<p>
+Performed SQL-based analysis on e-commerce sales data to uncover customer, product, and revenue insights.
+</p>
+
+
+<ul>
+
+
+<li>
+Wrote complex SQL queries using JOINs, subqueries, and window functions for business analysis.
+</li>
+
+
+<li>
+Analyzed customer purchasing behavior, sales performance, and revenue trends across categories.
+</li>
+
+
+<li>
+Extracted meaningful insights from large datasets using SQL.
+</li>
+
+
+<li>
+Provided data-driven recommendations to improve business decision-making.
+</li>
+
+
+</ul>
+
+
+<div class="tags">
+
+<span>SQL</span>
+<span>MySQL</span>
+<span>JOINs</span>
+<span>Subqueries</span>
+<span>Window Functions</span>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- Project 3 -->
+
+
+<div class="project-card">
+
+
+<div class="project-icon">
+
+<i class="fas fa-users"></i>
+
+</div>
+
+
+<h3>
+Customer Segmentation Analysis
+</h3>
+
+
+<p>
+Performed customer behavior analysis using Python and visualization techniques to identify meaningful customer groups.
+</p>
+
+
+<ul>
+
+
+<li>
+Performed data cleaning, preprocessing, and exploratory data analysis (EDA).
+</li>
+
+
+<li>
+Analyzed customer purchasing behavior to identify customer segments and trends.
+</li>
+
+
+<li>
+Created visual reports using Python libraries to communicate business insights.
+</li>
+
+
+<li>
+Provided recommendations to improve customer retention and marketing effectiveness.
+</li>
+
+
+</ul>
+
+
+<div class="tags">
+
+<span>Python</span>
+<span>Pandas</span>
+<span>Matplotlib</span>
+<span>EDA</span>
+<span>Data Visualization</span>
+
+
+</div>
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+<style>
+
+
+/* =============================
+   PROJECT SECTION CSS
+============================= */
+
+
+.projects-container{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(320px,1fr));
+
+gap:30px;
+
+}
+
+
+.project-card{
+
+background:white;
+
+padding:30px;
+
+border-radius:15px;
+
+box-shadow:
+0 10px 25px rgba(0,0,0,0.08);
+
+transition:0.4s;
+
+}
+
+
+.project-card:hover{
+
+transform:
+translateY(-10px);
+
+}
+
+
+.project-icon{
+
+width:70px;
+
+height:70px;
+
+background:#2563eb;
+
+color:white;
+
+font-size:28px;
+
+border-radius:50%;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+margin-bottom:20px;
+
+}
+
+
+.project-card h3{
+
+margin-bottom:15px;
+
+}
+
+
+.project-card p{
+
+margin-bottom:15px;
+
+}
+
+
+.project-card ul{
+
+padding-left:20px;
+
+color:#475569;
+
+}
+
+
+.project-card li{
+
+margin-bottom:10px;
+
+}
+
+
+.tags{
+
+margin-top:20px;
+
+}
+
+
+.tags span{
+
+display:inline-block;
+
+background:#dbeafe;
+
+color:#2563eb;
+
+padding:8px 15px;
+
+border-radius:20px;
+
+margin:5px;
+
+font-size:14px;
+
+font-weight:600;
+
+}
+
+
+/* Mobile */
+
+@media(max-width:768px){
+
+.projects-container{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+
+</style>
+<!-- =============================
+     MACHINE LEARNING PROJECTS
+============================= -->
+
+<section id="ml-projects">
+
+<div class="container">
+
+<h2>
+Machine Learning Projects
+</h2>
+
+
+<div class="projects-container">
+
+
+<!-- Project 1 -->
+
+<div class="project-card">
+
+
+<div class="project-icon">
+
+<i class="fas fa-brain"></i>
+
+</div>
+
+
+<h3>
+Mental Health Prediction System
+</h3>
+
+
+<p>
+Developed a machine learning model to predict mental health conditions based on user-related factors and behavioral data.
+</p>
+
+
+<ul>
+
+<li>
+Collected, cleaned, and preprocessed mental health datasets using Python.
+</li>
+
+<li>
+Performed Exploratory Data Analysis (EDA) to identify patterns and relationships.
+</li>
+
+<li>
+Built and trained classification models using Scikit-Learn algorithms.
+</li>
+
+<li>
+Evaluated model performance using accuracy, confusion matrix, and classification reports.
+</li>
+
+<li>
+Provided predictive insights to support early mental health assessment.
+</li>
+
+</ul>
+
+
+<div class="tags">
+
+<span>Python</span>
+<span>Pandas</span>
+<span>Machine Learning</span>
+<span>Scikit-Learn</span>
+<span>EDA</span>
+
+</div>
+
+
+<br>
+
+
+<a href="https://github.com/AdityaK1304"
+target="_blank"
+class="btn">
+
+View Project on GitHub
+
+</a>
+
+
+</div>
+
+
+
+<!-- Project 2 -->
+
+<div class="project-card">
+
+
+<div class="project-icon">
+
+<i class="fas fa-mobile-alt"></i>
+
+</div>
+
+
+<h3>
+Social Media Addiction Prediction
+</h3>
+
+
+<p>
+Built a machine learning model to analyze social media usage patterns and predict addiction levels using behavioral data.
+</p>
+
+
+<ul>
+
+<li>
+Performed data cleaning, preprocessing, and feature engineering.
+</li>
+
+<li>
+Conducted EDA to understand user engagement and usage trends.
+</li>
+
+<li>
+Implemented machine learning algorithms to predict addiction risk.
+</li>
+
+<li>
+Visualized insights using Python libraries such as Matplotlib and Seaborn.
+</li>
+
+<li>
+Generated analytical reports to understand the impact of social media usage.
+</li>
+
+</ul>
+
+
+<div class="tags">
+
+<span>Python</span>
+<span>Machine Learning</span>
+<span>Data Analysis</span>
+<span>Visualization</span>
+<span>Predictive Modeling</span>
+
+</div>
+
+
+<br>
+
+
+<a href="https://github.com/AdityaK1304"
+target="_blank"
+class="btn">
+
+View Project on GitHub
+
+</a>
+
+
+</div>
+
+
+
+</div>
+
+</div>
+
+</section>
+<!-- =============================
+     CERTIFICATIONS SECTION
+============================= -->
+
+<section id="certifications">
+
+<div class="container">
+
+<h2>
+Certifications & Training
+</h2>
+
+
+<div class="cert-container">
+
+
+<!-- Certificate 1 -->
+
+<div class="cert-card">
+
+<div class="cert-icon">
+<i class="fas fa-certificate"></i>
+</div>
+
+<h3>
+Deloitte Data Analytics Virtual Internship
+</h3>
+
+<p>
+Completed a virtual internship focused on data cleaning, 
+data visualization, dashboard creation, and extracting 
+business insights using analytical techniques.
+</p>
+
+<span>Forage | 2025</span>
+
+</div>
+
+
+
+<!-- Certificate 2 -->
+
+<div class="cert-card">
+
+<div class="cert-icon">
+<i class="fas fa-robot"></i>
+</div>
+
+<h3>
+TATA GenAI Powered Data Analytics
+</h3>
+
+<p>
+Gained hands-on experience in Generative AI concepts, 
+data analytics workflows, business problem solving, 
+and AI-driven decision making.
+</p>
+
+<span>Forage | 2025</span>
+
+</div>
+
+
+
+<!-- Certificate 3 -->
+
+<div class="cert-card">
+
+<div class="cert-icon">
+<i class="fas fa-graduation-cap"></i>
+</div>
+
+<h3>
+IT Vedant – Master in Data Science & Data Analytics with AI
+</h3>
+
+<p>
+Completed training in Python, SQL, Excel, Power BI, 
+Tableau, Machine Learning, and Data Visualization.
+</p>
+
+<span>IT Vedant | 2025</span>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =============================
+     CONTACT SECTION
+============================= -->
+
+
+<section id="contact">
+
+<div class="container">
+
+<h2>
+Contact Me
+</h2>
+
+
+<div class="contact-container">
+
+
+<div class="contact-info">
+
+<h3>
+Let's Connect
+</h3>
+
+
+<p>
+I am actively looking for opportunities as a 
+Data Analyst where I can apply my analytical 
+skills and contribute to business growth.
+</p>
+
+
+<div class="contact-item">
+
+<i class="fas fa-envelope"></i>
+
+<span>
+Email: kanteaditya13@gmail.com
+</span>
+
+</div>
+
+
+<div class="contact-item">
+
+<i class="fas fa-phone"></i>
+
+<span>
+Phone: +91 8830089501
+</span>
+
+</div>
+
+
+<div class="contact-item">
+
+<i class="fas fa-location-dot"></i>
+
+<span>
+Mumbai, Maharashtra, India
+</span>
+
+</div>
+
+
+<!-- Resume Button -->
+
+<br>
+
+<a href="resume.pdf"
+download
+class="btn">
+
+Download Resume
+
+</a>
+
+
+</div>
+
+
+
+<!-- Contact Form -->
+
+
+<div class="contact-form">
+
+<h3>
+Send Message
+</h3>
+
+
+<form>
+
+
+<input type="text"
+placeholder="Your Name"
+required>
+
+
+<input type="email"
+placeholder="Your Email"
+required>
+
+
+<input type="text"
+placeholder="Subject"
+required>
+
+
+<textarea 
+placeholder="Your Message"
+rows="6"
+required></textarea>
+
+
+<button type="submit" class="btn">
+
+Send Message
+
+</button>
+
+
+</form>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<style>
+
+/* =============================
+   CERTIFICATIONS CSS
+============================= */
+
+
+.cert-container{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:30px;
+
+}
+
+
+.cert-card{
+
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
+transition:0.3s;
+
+}
+
+
+.cert-card:hover{
+
+transform:translateY(-10px);
+
+}
+
+
+.cert-icon{
+
+font-size:35px;
+color:#2563eb;
+margin-bottom:15px;
+
+}
+
+
+.cert-card h3{
+
+margin-bottom:15px;
+
+}
+
+
+.cert-card span{
+
+color:#2563eb;
+font-weight:bold;
+
+}
+
+
+
+/* =============================
+   CONTACT CSS
+============================= */
+
+
+.contact-container{
+
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:40px;
+
+}
+
+
+.contact-info,
+.contact-form{
+
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
+
+}
+
+
+.contact-item{
+
+margin-top:20px;
+font-size:17px;
+
+}
+
+
+.contact-item i{
+
+color:#2563eb;
+margin-right:10px;
+
+}
+
+
+.contact-form input,
+.contact-form textarea{
+
+width:100%;
+padding:15px;
+margin:10px 0;
+border:1px solid #ddd;
+border-radius:8px;
+font-size:16px;
+
+}
+
+
+.contact-form button{
+
+border:none;
+cursor:pointer;
+
+}
+
+
+/* Responsive */
+
+@media(max-width:768px){
+
+.contact-container{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+
+</style>
+<!-- =============================
+     FOOTER SECTION
+============================= -->
+
+<footer>
+
+<div class="container">
+
+
+<div class="footer-content">
+
+
+<h2>
+Aditya Kante
+</h2>
+
+
+<p>
+Aspiring Data Analyst | Turning Data into Actionable Insights
+</p>
+
+
+<div class="footer-social">
+
+
+<a href="https://github.com/AdityaK1304" target="_blank">
+
+<i class="fab fa-github"></i>
+
+</a>
+
+
+<a href="https://www.linkedin.com/in/aditya-kante-656213371/" 
+target="_blank">
+
+<i class="fab fa-linkedin"></i>
+
+</a>
+
+
+<a href="mailto:kanteaditya13@gmail.com">
+
+<i class="fas fa-envelope"></i>
+
+</a>
+
+
+</div>
+
+
+
+<ul class="footer-links">
+
+
+<li>
+<a href="#home">Home</a>
+</li>
+
+
+<li>
+<a href="#about">About</a>
+</li>
+
+
+<li>
+<a href="#skills">Skills</a>
+</li>
+
+
+<li>
+<a href="#projects">Projects</a>
+</li>
+
+
+<li>
+<a href="#ml-projects">ML Projects</a>
+</li>
+
+
+<li>
+<a href="#contact">Contact</a>
+</li>
+
+
+</ul>
+
+
+<hr>
+
+
+<p class="copyright">
+
+© 2026 Aditya Kante. All Rights Reserved.
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+</footer>
+
+
+
+<!-- =============================
+     FOOTER CSS
+============================= -->
+
+<style>
+
+
+footer{
+
+background:#0f172a;
+color:white;
+padding:60px 0 30px;
+text-align:center;
+
+}
+
+
+.footer-content h2{
+
+color:white;
+margin-bottom:10px;
+
+}
+
+
+.footer-content p{
+
+color:#cbd5e1;
+margin-bottom:25px;
+
+}
+
+
+.footer-social{
+
+display:flex;
+justify-content:center;
+gap:15px;
+margin-bottom:25px;
+
+}
+
+
+.footer-social a{
+
+height:45px;
+width:45px;
+background:#1e293b;
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+border-radius:50%;
+text-decoration:none;
+transition:.3s;
+
+}
+
+
+.footer-social a:hover{
+
+background:#2563eb;
+transform:translateY(-5px);
+
+}
+
+
+.footer-links{
+
+display:flex;
+justify-content:center;
+gap:25px;
+list-style:none;
+flex-wrap:wrap;
+margin-bottom:25px;
+
+}
+
+
+.footer-links a{
+
+color:#e2e8f0;
+text-decoration:none;
+font-weight:500;
+
+}
+
+
+.footer-links a:hover{
+
+color:#2563eb;
+
+}
+
+
+footer hr{
+
+margin:25px 0;
+border:1px solid #334155;
+
+}
+
+
+.copyright{
+
+color:#94a3b8;
+
+}
+
+
+
+/* =============================
+     MOBILE NAVIGATION
+============================= */
+
+
+@media(max-width:768px){
+
+
+.nav-links{
+
+display:none;
+position:absolute;
+top:80px;
+left:0;
+width:100%;
+background:white;
+flex-direction:column;
+text-align:center;
+padding:20px;
+
+}
+
+
+.nav-links.active{
+
+display:flex;
+
+}
+
+
+.menu-btn{
+
+display:block;
+
+}
+
+
+}
+
+
+</style>
+
+
+
+
+<!-- =============================
+     JAVASCRIPT SECTION
+============================= -->
+
+
+<script>
+
+
+/* Mobile Menu Toggle */
+
+
+const menuBtn = document.querySelector(".menu-btn");
+
+const navLinks = document.querySelector(".nav-links");
+
+
+menuBtn.addEventListener("click", ()=>{
+
+navLinks.classList.toggle("active");
+
+});
+
+
+
+
+
+/* Smooth Scroll Animation */
+
+
+document.querySelectorAll('a[href^="#"]')
+.forEach(link => {
+
+
+link.addEventListener("click", function(e){
+
+
+e.preventDefault();
+
+
+const target =
+document.querySelector(
+this.getAttribute("href")
+);
+
+
+if(target){
+
+
+window.scrollTo({
+
+top: target.offsetTop - 70,
+
+behavior:"smooth"
+
+
+});
+
+
+}
+
+
+
+navLinks.classList.remove("active");
+
+
+});
+
+
+});
+
+
+
+
+
+
+/* Contact Form Message */
+
+
+const form = document.querySelector("form");
+
+
+form.addEventListener("submit", function(e){
+
+
+e.preventDefault();
+
+
+alert(
+"Thank you for your message! I will contact you soon."
+);
+
+
+form.reset();
+
+
+});
+
+
+
+
+
+
+/* Header Shadow Effect */
+
+
+window.addEventListener("scroll", ()=>{
+
+
+const header =
+document.querySelector("header");
+
+
+if(window.scrollY > 50){
+
+
+header.style.boxShadow =
+"0 5px 15px rgba(0,0,0,0.2)";
+
+
+}
+
+else{
+
+
+header.style.boxShadow =
+"0 3px 10px #ddd";
+
+
+}
+
+
+});
+
+
+</script>
+<!-- =============================
+     SCROLL TO TOP BUTTON
+============================= -->
+
+<button id="scrollTopBtn">
+
+<i class="fas fa-arrow-up"></i>
+
+</button>
+
+
+<!-- =============================
+     EXTRA CSS IMPROVEMENTS
+============================= -->
+
+<style>
+
+
+/* Smooth page transition */
+
+html{
+
+scroll-behavior:smooth;
+
+}
+
+
+/* Scroll Button */
+
+#scrollTopBtn{
+
+position:fixed;
+
+bottom:30px;
+
+right:30px;
+
+width:50px;
+
+height:50px;
+
+border:none;
+
+border-radius:50%;
+
+background:#2563eb;
+
+color:white;
+
+font-size:20px;
+
+cursor:pointer;
+
+display:none;
+
+box-shadow:0 5px 15px rgba(0,0,0,0.25);
+
+transition:0.3s;
+
+z-index:999;
+
+}
+
+
+#scrollTopBtn:hover{
+
+background:#1e40af;
+
+transform:translateY(-5px);
+
+}
+
+
+
+/* Better Project Card Animation */
+
+.project-card{
+
+animation:fadeUp 0.8s ease;
+
+}
+
+
+@keyframes fadeUp{
+
+
+from{
+
+opacity:0;
+
+transform:translateY(40px);
+
+}
+
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+
+}
+
+
+/* Improve button spacing */
+
+.btn{
+
+margin-top:10px;
+
+}
+
+
+/* Mobile optimization */
+
+@media(max-width:600px){
+
+
+h1{
+
+font-size:38px;
+
+}
+
+
+h2{
+
+font-size:28px;
+
+}
+
+
+.hero-image img{
+
+width:240px;
+
+height:240px;
+
+}
+
+
+.project-card,
+.skill-card,
+.cert-card,
+.contact-info,
+.contact-form{
+
+padding:20px;
+
+}
+
+
+#scrollTopBtn{
+
+width:45px;
+
+height:45px;
+
+bottom:20px;
+
+right:20px;
+
+}
+
+
+}
+
+
+</style>
+
+
+
+<!-- =============================
+     FINAL JAVASCRIPT
+============================= -->
+
+
+<script>
+
+
+/* Scroll To Top Button */
+
+
+const scrollBtn =
+document.getElementById("scrollTopBtn");
+
+
+
+window.addEventListener("scroll",()=>{
+
+
+if(window.scrollY > 300){
+
+
+scrollBtn.style.display = "block";
+
+
+}
+
+
+else{
+
+
+scrollBtn.style.display = "none";
+
+
+}
+
+
+});
+
+
+
+scrollBtn.addEventListener("click",()=>{
+
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+
+});
+
+
+
+/* Console Message */
+
+
+console.log(
+
+"Aditya Kante Portfolio Loaded Successfully 🚀"
+
+);
+
+
+
+</script>
+
+
 </body>
-</html>
 
+</html>
